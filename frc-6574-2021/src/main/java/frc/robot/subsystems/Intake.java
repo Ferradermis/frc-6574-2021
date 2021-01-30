@@ -10,40 +10,49 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotCANMap;
 
 public class Intake extends SubsystemBase {
+
+  public CANSparkMax intake = new CANSparkMax(RobotCANMap.INTAKE_MOTOR_CANID, MotorType.kBrushless);
+  public DoubleSolenoid deployer = new DoubleSolenoid(RobotCANMap.INTAKE_EXTENDER_ID1, RobotCANMap.INTAKE_EXTENDER_ID2);
+
+  private double collectingSpeed = 1;
+  private double repellingSpeed = -1;
+
   /**
    * Creates a new Intake.
    */
   public Intake() {
-    final CANSparkMax Intake = new CANSparkMax(RobotCANMap.INTAKE_MOTOR_CANID, MotorType.kBrushless);
-
+    intake.restoreFactoryDefaults();
+    retract();
   }
-public void turnOn(){
 
-}
-public void turnOff(){
-
-}
-public void reverseOn(){
-
-}
-public void deployOrRetract(){
-
-}
-public void deploy(){
-
-}
-public void retract(){
-
-}
-public void configureMotors(){
-
-}
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  //Spins rollers inward.
+  public void collect(){
+    intake.set(collectingSpeed);
   }
+
+  //Stops spinning rollers.
+  public void stop(){
+    intake.stopMotor();
+  }
+
+  //Spins rollers outward.
+  public void repel(){
+    intake.set(repellingSpeed);
+  }
+
+  //Deploy intake.
+  public void deploy(){
+    deployer.set(DoubleSolenoid.Value.kForward);
+  }
+
+  //Retract intake.
+  public void retract(){
+    deployer.set(DoubleSolenoid.Value.kReverse);
+  }
+
 }

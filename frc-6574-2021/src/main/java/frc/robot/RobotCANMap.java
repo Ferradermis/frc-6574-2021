@@ -16,11 +16,11 @@ public class RobotCANMap {
     public static final int FRONT_RIGHT_CANID = 3;
     public static final int BACK_RIGHT_CANID = 4;
 
-    public static final int SHOOTERREDTUBE_CANID = 5;
-    public static final int SHOOTERBLACKTUBE_CANID = 6;
+    public static final int SHOOTER_RED_CANID = 5;
+    public static final int SHOOTER_BLACK_CANID = 6;
 
     public static final int ELEVATOR_CANID = 7;
-    public static final int WENCH_CANID = 8;
+    public static final int WINCH_CANID = 8;
 
     public static final int INTAKE_MOTOR_CANID = 9;
 
@@ -29,4 +29,7 @@ public class RobotCANMap {
     public static final int FEEDER_CANID = 12;
 
     public static final int TURRET_CANID = 11;
+
+    public static final int INTAKE_EXTENDER_ID1 = 4;
+    public static final int INTAKE_EXTENDER_ID2 = 5;
 }

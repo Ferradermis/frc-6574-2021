@@ -13,31 +13,50 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotCANMap;
 
 public class Spindexer extends SubsystemBase {
+
+  public CANSparkMax spindexer = new CANSparkMax(RobotCANMap.SPINDEXER_CANID, MotorType.kBrushless);
+  public CANSparkMax feeder = new CANSparkMax(RobotCANMap.FEEDER_CANID, MotorType.kBrushless);
+
+  private double intakeSpeed = 1;
+  private double shootSpeed = 1;
+
+  private double feedSpeed = 1;
+
   /**
    * Creates a new Spindexer.
    */
   public Spindexer() {
-    final CANSparkMax Spindexer = new CANSparkMax(RobotCANMap.SPINDEXER_CANID, MotorType.kBrushless);
-    final CANSparkMax Feeder = new CANSparkMax(RobotCANMap.FEEDER_CANID, MotorType.kBrushless);
+    spindexer.restoreFactoryDefaults();
+    feeder.restoreFactoryDefaults();
   }
-public void turnOnForShooting(){
 
-}
-public void turnOnForIntake(){
-
-}
-public void turnOff(){
-
-}
-public void reverseForIntake(){
-
-}
-public void stopFeeder(){
-
-}
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void stopSpinning(){
+    spindexer.stopMotor();
   }
+
+  public void spinClockwise(boolean shooting){
+    if (shooting) {
+      spindexer.set(shootSpeed);
+    } else {
+      spindexer.set(intakeSpeed);
+    }
+  }
+
+  public void spinCounterClockwise(boolean shooting){
+    if (shooting) {
+      spindexer.set(-shootSpeed);
+    } else {
+      spindexer.set(-intakeSpeed);
+      }
+    }
+
+    public void spinFeeder(){
+      feeder.set(feedSpeed);
+    }
+
+    public void stopFeeder(){
+      feeder.stopMotor();;
+    }
+
+
 }

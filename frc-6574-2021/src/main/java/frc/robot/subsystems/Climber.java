@@ -14,12 +14,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotCANMap;
 
 public class Climber extends SubsystemBase {
+
+  public CANSparkMax elevator = new CANSparkMax(RobotCANMap.ELEVATOR_CANID, MotorType.kBrushless);
+  public CANSparkMax winch = new CANSparkMax(RobotCANMap.WINCH_CANID, MotorType.kBrushless);
+
   /**
    * Creates a new Climber.
    */
   public Climber() {
-    final CANSparkMax Elevator = new CANSparkMax(RobotCANMap.ELEVATOR_CANID, MotorType.kBrushless);
-    final CANSparkMax Wench = new CANSparkMax(RobotCANMap.WENCH_CANID, MotorType.kBrushless);
+    
   }
 public void deploy(){
 

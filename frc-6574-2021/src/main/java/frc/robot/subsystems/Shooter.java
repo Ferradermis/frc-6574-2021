@@ -7,48 +7,49 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotCANMap;
 
 public class Shooter extends SubsystemBase {
+
+  public WPI_TalonFX shooterRed = new WPI_TalonFX(RobotCANMap.SHOOTER_RED_CANID);
+  public WPI_TalonFX shooterBlackMain = new WPI_TalonFX(RobotCANMap.SHOOTER_BLACK_CANID);
+
+  private int shootVelocity = 1;
+
   /**
    * Creates a new Shooter.
    */
   public Shooter() {
-    final WPI_TalonFX shooterRedTube = new WPI_TalonFX(RobotCANMap.SHOOTERREDTUBE_CANID);
-    final WPI_TalonFX shooterBlackTube = new WPI_TalonFX(RobotCANMap.SHOOTERBLACKTUBE_CANID);
+    shooterRed.configFactoryDefault();
+    shooterBlackMain.configFactoryDefault();
+    shooterRed.setInverted(true);
+    shooterRed.follow(shooterBlackMain);
+
+    lowerHoodForTrench();
+    retractHoodForShortDistance();
   }
-public void spin(){
+  public void spin(){
+    shooterBlackMain.set(ControlMode.Velocity,shootVelocity);
+  }
 
-}
-public void feedAndFire(){
+  public void stopShooting(){
+    shooterBlackMain.stopMotor();
 
-}
-public void setVelocity(){
+  }
+  public void raiseHoodForShooting(){
 
-}
-public void stopFiring(){
+  }
+  public void lowerHoodForTrench(){
 
-}
-public void stopShooting(){
+  }
+  public void extendHoodForLongDistance(){
 
-}
-public void raiseHoodForShooting(){
+  }
+  public void retractHoodForShortDistance(){
 
-}
-public void lowerHoodForTrench(){
-
-}
-public void extendHoodForLongDistance(){
-
-}
-public void retractHoodForShortDistance(){
-
-}
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
   }
 }
