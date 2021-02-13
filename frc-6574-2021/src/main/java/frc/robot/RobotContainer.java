@@ -15,6 +15,12 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.CollectPowerCells;
+import frc.robot.commands.DriveClimberDown;
+import frc.robot.commands.DriveClimberUp;
+import frc.robot.commands.ExtendHood;
+import frc.robot.commands.LowerHood;
+import frc.robot.commands.RaiseHood;
+import frc.robot.commands.RetractHood;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
@@ -177,10 +183,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     operator_rightBumper.toggleWhenPressed(new CollectPowerCells());
-    operator_upDpad.whenPressed(()->shooter.raiseHoodForShooting());
-    operator_downDpad.whenPressed(()->shooter.lowerHoodForTrench());
-    operator_rightDpad.whenPressed(()->shooter.extendHoodForLongDistance());
-    operator_leftDpad.whenPressed(()->shooter.retractHoodForShortDistance());
+    operator_upDpad.whenPressed(new RaiseHood());
+    operator_downDpad.whenPressed(new LowerHood());
+    operator_rightDpad.whenPressed(new ExtendHood());
+    operator_leftDpad.whenPressed(new RetractHood());
+
+    driver_upDpad.whileHeld(new DriveClimberUp());
+    driver_downDpad.whileHeld(new DriveClimberDown());
   }
 
 

@@ -8,8 +8,10 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotCANMap;
 
@@ -18,24 +20,51 @@ public class Climber extends SubsystemBase {
   public CANSparkMax elevator = new CANSparkMax(RobotCANMap.ELEVATOR_CANID, MotorType.kBrushless);
   public CANSparkMax winch = new CANSparkMax(RobotCANMap.WINCH_CANID, MotorType.kBrushless);
 
+  final DoubleSolenoid.Value DEPLOYED = DoubleSolenoid.Value.kForward;
+  final DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
+  //public DoubleSolenoid climberDeploy = new DoubleSolenoid(RobotCANMap.CLIMBER_EXTENDER_ID2, RobotCANMap.CLIMBER_EXTENDER_ID1);
+
+
+  final double elevatorSpeed = .15;
   /**
    * Creates a new Climber.
    */
   public Climber() {
-    
+    double rampRate = 0.2;
+    int currentLimit = 40;
+    elevator.setOpenLoopRampRate(rampRate); //makes sure it doesn't go too fast when it is about to end?
+    winch.setOpenLoopRampRate(rampRate);
+
+    elevator.setSmartCurrentLimit(currentLimit); //will stop power if stuck
+    winch.setSmartCurrentLimit(currentLimit);
+
+    elevator.setInverted(true);
+    elevator.setIdleMode(IdleMode.kBrake);
+    winch.setIdleMode(IdleMode.kBrake);
   }
-public void deploy(){
-
-}
-public void retract(){
-
-}
-public void move(){
-
-}
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void deploy(){
+    //climberDeploy.set(DEPLOYED);
   }
+  public void retract(){
+    //climberDeploy.set(RETRACTED);
+  }
+
+  public void moveElevatorStaticUp() {
+    elevator.set(elevatorSpeed);
+  }
+
+  public void moveElevatorStaticDown() {
+    elevator.set(-elevatorSpeed);
+  }
+
+  public void stopElevator() {
+    elevator.set(0);
+  }
+
+  /*public boolean isRetracted() {
+    return (climberDeploy.get() == RETRACTED);
+
+  }
+    */
+
 }
