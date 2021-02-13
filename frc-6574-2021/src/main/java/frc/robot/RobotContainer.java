@@ -177,12 +177,16 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     operator_rightBumper.toggleWhenPressed(new CollectPowerCells());
+    operator_upDpad.whenPressed(()->shooter.raiseHoodForShooting());
+    operator_downDpad.whenPressed(()->shooter.lowerHoodForTrench());
+    operator_rightDpad.whenPressed(()->shooter.extendHoodForLongDistance());
+    operator_leftDpad.whenPressed(()->shooter.retractHoodForShortDistance());
   }
 
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
+   * Andrew was here
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
