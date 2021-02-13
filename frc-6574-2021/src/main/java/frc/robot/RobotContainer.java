@@ -36,10 +36,10 @@ public class RobotContainer {
   public static Shooter shooter = new Shooter();
   public static Spindexer spindexer = new Spindexer();
 
-  public Joystick driver = new Joystick(0);
-  public Joystick operator = new Joystick(1);
+  public static Joystick driver = new Joystick(0);
+  public static Joystick operator = new Joystick(1);
 
-  //  STILL NEED TO FIGURE OUT TRIGGERS
+  // STILL NEED TO FIGURE OUT TRIGGERS
   // xBox Variables
   public Button driver_aButton = new JoystickButton(driver, 1);
   public Button driver_bButton = new JoystickButton(driver, 2);
@@ -56,35 +56,35 @@ public class RobotContainer {
   public POVButton driver_downDpad = new POVButton(driver, 180);
   public POVButton driver_leftDpad = new POVButton(driver, 270);
 
-  public double getDriverLeftX() {
+  public static double getDriverLeftX() {
     return driver.getRawAxis(0);
   }
 
-  public double getDriverLeftY() {
+  public static double getDriverLeftY() {
     return driver.getRawAxis(1);
   }
 
-  public double getDriverRightX() {
+  public static double getDriverRightX() {
     return driver.getRawAxis(4);
   }
 
-  public double getDriverRightY() {
+  public static double getDriverRightY() {
     return driver.getRawAxis(5);
   }
 
-  public double getDriverLeftTrigger() {
+  public static double getDriverLeftTrigger() {
     return driver.getRawAxis(2);
   }
 
-  public double getDriverRightTrigger() {
+  public static double getDriverRightTrigger() {
     return driver.getRawAxis(3);
   }
 
-  public boolean getDriverLeftBumper() {
+  public static boolean getDriverLeftBumper() {
     return driver.getRawButton(5);
   }
 
-  public boolean getDriverRightBumper() {
+  public static boolean getDriverRightBumper() {
     return driver.getRawButton(6);
   }
 
@@ -104,35 +104,35 @@ public class RobotContainer {
   public POVButton operator_downDpad = new POVButton(operator, 180);
   public POVButton operator_leftDpad = new POVButton(operator, 270);
 
-  public double getOperatorLeftX() {
+  public static double getOperatorLeftX() {
     return operator.getRawAxis(0);
   }
 
-  public double getOperatorLeftY() {
+  public static double getOperatorLeftY() {
     return operator.getRawAxis(1);
   }
 
-  public double getOperatorRightX() {
+  public static double getOperatorRightX() {
     return operator.getRawAxis(4);
   }
 
-  public double getOperatorRightY() {
+  public static double getOperatorRightY() {
     return operator.getRawAxis(5);
   }
 
-  public double getOperatorLeftTrigger() {
+  public static double getOperatorLeftTrigger() {
     return operator.getRawAxis(2);
   }
 
-  public double getOperatorRightTrigger() {
+  public static double getOperatorRightTrigger() {
     return operator.getRawAxis(3);
   }
 
-  public boolean getOperatorLeftBumper() {
+  public static boolean getOperatorLeftBumper() {
     return operator.getRawButton(5);
   }
 
-  public boolean getOperatorRightBumper() {
+  public static boolean getOperatorRightBumper() {
     return operator.getRawButton(6);
   }
 
