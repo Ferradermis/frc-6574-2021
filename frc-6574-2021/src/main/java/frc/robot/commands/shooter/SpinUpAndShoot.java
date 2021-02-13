@@ -5,16 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.shooter;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
-public class SpinFeeder extends CommandBase {
+public class SpinUpAndShoot extends ParallelCommandGroup {
   /**
-   * Creates a new SpinFeeder.
+   * Creates a new SpinUpAndShoot.
    */
-  public SpinFeeder() {
+  public SpinUpAndShoot() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addCommands(new SpinShooter(), new WaitAndFeed());
   }
 
   // Called when the command is initially scheduled.

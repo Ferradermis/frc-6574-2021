@@ -5,18 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.shooter;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.spindexer.SpindexForShooting;
 
-public class WaitAndSpindex extends SequentialCommandGroup {
+public class ShootPowerCells2 extends SequentialCommandGroup {
   /**
-   * Creates a new WaitAndSpindex.
+   * Creates a new ShootPowerCells2.
    */
-  public WaitAndSpindex() {
+  public ShootPowerCells2() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addCommands(new WaitCommand(1), new SpindexForShooting());
+    super(
+      new RaiseHood(), 
+      new WaitCommand(2),
+      new ParallelCommandGroup(
+        new SpinShooter(),
+        new SequentialCommandGroup(
+          new WaitCommand(2),
+          new ParallelCommandGroup(
+            new SpinFeeder(),
+            new SequentialCommandGroup(
+              new WaitCommand(2),
+              new SpindexForShooting()
+            )
+          )
+        )
+      )
+      );
   }
 
   // Called when the command is initially scheduled.

@@ -5,19 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.shooter;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class WaitAndFeed extends SequentialCommandGroup {
+public class SpinFeeder extends CommandBase {
   /**
-   * Creates a new WaitAndFeed.
+   * Creates a new SpinFeeder.
    */
-  public WaitAndFeed() {
+  public SpinFeeder() {
     // Use addRequirements() here to declare subsystem dependencies.
-    //WaitCommand is a place holder for velocity control.
-    addCommands(new WaitCommand(2), new FeedThenSpindex());
   }
 
   // Called when the command is initially scheduled.

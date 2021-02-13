@@ -5,17 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.shooter;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
-public class SpinUpAndShoot extends ParallelCommandGroup {
+public class WaitAndFeed extends SequentialCommandGroup {
   /**
-   * Creates a new SpinUpAndShoot.
+   * Creates a new WaitAndFeed.
    */
-  public SpinUpAndShoot() {
+  public WaitAndFeed() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addCommands(new SpinShooter(), new WaitAndFeed());
+    //WaitCommand is a place holder for velocity control.
+    addCommands(new WaitCommand(2), new FeedThenSpindex());
   }
 
   // Called when the command is initially scheduled.

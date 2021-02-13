@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotCANMap;
-import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.drivetrain.ArcadeDrive;
 
 public class DriveTrain extends SubsystemBase {
 

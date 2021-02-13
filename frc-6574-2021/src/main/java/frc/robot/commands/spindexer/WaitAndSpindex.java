@@ -5,16 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.spindexer;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
-public class SpinShooter extends CommandBase {
+public class WaitAndSpindex extends SequentialCommandGroup {
   /**
-   * Creates a new SpinShooter.
+   * Creates a new WaitAndSpindex.
    */
-  public SpinShooter() {
+  public WaitAndSpindex() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addCommands(new WaitCommand(1), new SpindexForShooting());
   }
 
   // Called when the command is initially scheduled.

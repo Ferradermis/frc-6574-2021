@@ -22,7 +22,7 @@ public class Climber extends SubsystemBase {
 
   final DoubleSolenoid.Value DEPLOYED = DoubleSolenoid.Value.kForward;
   final DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
-  //public DoubleSolenoid climberDeploy = new DoubleSolenoid(RobotCANMap.CLIMBER_EXTENDER_ID2, RobotCANMap.CLIMBER_EXTENDER_ID1);
+ 
 
 
   final double elevatorSpeed = .15;
@@ -42,12 +42,8 @@ public class Climber extends SubsystemBase {
     elevator.setIdleMode(IdleMode.kBrake);
     winch.setIdleMode(IdleMode.kBrake);
   }
-  public void deploy(){
-    //climberDeploy.set(DEPLOYED);
-  }
-  public void retract(){
-    //climberDeploy.set(RETRACTED);
-  }
+
+
 
   public void moveElevatorStaticUp() {
     elevator.set(elevatorSpeed);
@@ -61,10 +57,13 @@ public class Climber extends SubsystemBase {
     elevator.set(0);
   }
 
-  /*public boolean isRetracted() {
-    return (climberDeploy.get() == RETRACTED);
+
+  public void moveWinch(double yLeft) { 
+    if ((Math.abs(yLeft) <= 0.1)) {
+       //elevator.set(0);
+       winch.set(0);
+      return;
+    }
 
   }
-    */
-
 }

@@ -5,23 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.shooter;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.RobotContainer;
 
-public class ShootPowerCells extends SequentialCommandGroup {
+public class RaiseHood extends InstantCommand {
   /**
-   * Creates a new ShootPowerCells.
+   * Creates a new RaiseHood.
    */
-  public ShootPowerCells() {
+  public RaiseHood() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addCommands(new RaiseHood(),new WaitCommand(.25), new SpinUpAndShoot());
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.shooter.raiseHoodForShooting();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,9 +34,4 @@ public class ShootPowerCells extends SequentialCommandGroup {
   public void end(boolean interrupted) {
   }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
 }
