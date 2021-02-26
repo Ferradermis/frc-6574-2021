@@ -14,18 +14,17 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import frc.robot.commands.climber.DriveClimberDown;
-import frc.robot.commands.climber.DriveClimberUp;
+import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.intake.CollectPowerCells;
 import frc.robot.commands.shooter.ExtendHood;
 import frc.robot.commands.shooter.LowerHood;
 import frc.robot.commands.shooter.RaiseHood;
 import frc.robot.commands.shooter.RetractHood;
-import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Spindexer;
+import edu.wpi.first.wpilibj.Compressor;
 
 
 /**
@@ -36,15 +35,18 @@ import frc.robot.subsystems.Spindexer;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public static Climber climber = new Climber();
+  
   public static DriveTrain driveTrain = new DriveTrain();
   public static Intake intake = new Intake();
   public static Shooter shooter = new Shooter();
   public static Spindexer spindexer = new Spindexer();
-
+  public static final Compressor compressor = new Compressor();
   public static Joystick driver = new Joystick(0);
   public static Joystick operator = new Joystick(1);
 
+
+  public final ArcadeDrive arcadeDrive = new ArcadeDrive(driveTrain);
+ 
   // STILL NEED TO FIGURE OUT TRIGGERS
   // xBox Variables
   public Button driver_aButton = new JoystickButton(driver, 1);
@@ -182,14 +184,14 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    operator_rightBumper.toggleWhenPressed(new CollectPowerCells());
     operator_upDpad.whenPressed(new RaiseHood());
     operator_downDpad.whenPressed(new LowerHood());
     operator_rightDpad.whenPressed(new ExtendHood());
     operator_leftDpad.whenPressed(new RetractHood());
 
-    driver_upDpad.whileHeld(new DriveClimberUp());
-    driver_downDpad.whileHeld(new DriveClimberDown());
+    //driver_upDpad.whileHeld(new DriveClimberUp());
+    //driver_downDpad.whileHeld(new DriveClimberDown());
+    driver_rightBumper.toggleWhenPressed(new CollectPowerCells());
   }
 
 

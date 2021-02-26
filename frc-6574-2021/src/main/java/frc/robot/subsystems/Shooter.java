@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -22,6 +23,8 @@ public class Shooter extends SubsystemBase {
 
   public DoubleSolenoid hoodTrench = new DoubleSolenoid(RobotCANMap.HOOD_TRENCH_ID1, RobotCANMap.HOOD_TRENCH_ID2);
   public DoubleSolenoid hoodAngle = new DoubleSolenoid(RobotCANMap.HOOD_ANGLE_ID2, RobotCANMap.HOOD_ANGLE_ID1);
+
+  public TalonSRX turretRotator = new TalonSRX(RobotCANMap.TURRET_CANID);
 
   private int shootVelocity = 1;
 

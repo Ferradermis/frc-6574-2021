@@ -6,17 +6,20 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveTrain;
 
 public class ArcadeDrive extends CommandBase {
   /** Creates a new ArcadeDrive. */
+  private DriveTrain driveTrain;
   private double THROTTLE = 1;
-  public ArcadeDrive() {
+  public ArcadeDrive(DriveTrain driveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.driveTrain = driveTrain;
     addRequirements(RobotContainer.driveTrain);
     
   }
 
-  // Called when the command is initially scheduled.
+// Called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
@@ -27,8 +30,8 @@ public class ArcadeDrive extends CommandBase {
     double drive_cmd=0;
 
     // Read data from joystick and drive per joystick positioning
-    double y = RobotContainer.getDriverLeftY();
-    double x = -RobotContainer.getDriverRightX(); 
+    double x = RobotContainer.getDriverLeftY();
+    double y = -RobotContainer.getDriverRightX(); 
   
     drive_cmd = Math.pow(y, 1);       // cubing y makes it more "sensitive", maybe need to adjust deadbands
     steer_cmd = Math.pow(x, 1) / 2; // cubing x and /2 makes it more "sensitive", maybe need to adjust deadbands

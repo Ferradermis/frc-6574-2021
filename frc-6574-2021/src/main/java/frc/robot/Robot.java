@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    RobotContainer.compressor.start();
   }
 
   /**
@@ -88,7 +89,17 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
+
     }
+    CommandScheduler.getInstance().cancelAll(); // make sure auto's are stopped
+
+    // make sure default commands are scheduled
+    RobotContainer.driveTrain.stop();
+    if (!CommandScheduler.getInstance().isScheduled(m_robotContainer.arcadeDrive)) {
+      CommandScheduler.getInstance().schedule(m_robotContainer.arcadeDrive);
+    }
+
+
   }
 
   /**

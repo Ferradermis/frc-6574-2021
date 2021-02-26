@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,10 +17,10 @@ import frc.robot.commands.drivetrain.ArcadeDrive;
 
 public class DriveTrain extends SubsystemBase {
 
-  public WPI_TalonFX frontLeft = new WPI_TalonFX(RobotCANMap.FRONT_LEFT_CANID);
-  public WPI_TalonFX backLeft = new WPI_TalonFX(RobotCANMap.BACK_LEFT_CANID);
-  public WPI_TalonFX frontRight = new WPI_TalonFX(RobotCANMap.FRONT_RIGHT_CANID);
-  public WPI_TalonFX backRight = new WPI_TalonFX(RobotCANMap.BACK_RIGHT_CANID);
+  private WPI_TalonFX frontLeft = new WPI_TalonFX(RobotCANMap.FRONT_LEFT_CANID);
+  private WPI_TalonFX backLeft = new WPI_TalonFX(RobotCANMap.BACK_LEFT_CANID);
+  private WPI_TalonFX frontRight = new WPI_TalonFX(RobotCANMap.FRONT_RIGHT_CANID);
+  private WPI_TalonFX backRight = new WPI_TalonFX(RobotCANMap.BACK_RIGHT_CANID);
   /**
    * Creates a new DriveTrain.
    */
@@ -31,7 +32,7 @@ public class DriveTrain extends SubsystemBase {
 
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
-    setDefaultCommand(new ArcadeDrive());
+    //setDefaultCommand(new ArcadeDrive());
   }
 
   public void stop(){
@@ -65,5 +66,37 @@ public class DriveTrain extends SubsystemBase {
   public void resetgyro(){
 
   }
+  private void configureMotors() {
 
+    double rampRate = 0.35; //time in seconds to go from 0 to full throttle
+
+    backLeft.follow(frontLeft);
+    backRight.follow(frontRight);
+    //thirdRight.follow(frontRight);
+    //thirdLeft.follow(frontRight);
+
+    frontLeft.configFactoryDefault();
+    frontRight.configFactoryDefault();
+    backLeft.configFactoryDefault();
+    backRight.configFactoryDefault();
+    //thirdRight.configFactoryDefault();
+    //thirdLeft.configFactoryDefault();
+
+    frontLeft.configOpenloopRamp(rampRate);
+    backLeft.configOpenloopRamp(rampRate);
+    frontRight.configOpenloopRamp(rampRate);
+    backRight.configOpenloopRamp(rampRate);
+    //thirdLeft.configOpenloopRamp(rampRate);
+    //thirdRight.configOpenloopRamp(rampRate);
+
+    frontRight.setInverted(true);
+    backRight.setInverted(true);
+    //thirdRight.setInverted(true);
+
+
+    frontLeft.setNeutralMode(NeutralMode.Brake);
+    backLeft.setNeutralMode(NeutralMode.Brake);
+    frontRight.setNeutralMode(NeutralMode.Brake);
+    backRight.setNeutralMode(NeutralMode.Brake);
+  }
 }

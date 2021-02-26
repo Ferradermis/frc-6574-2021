@@ -19,7 +19,7 @@ public class Intake extends SubsystemBase {
   public CANSparkMax intake = new CANSparkMax(RobotCANMap.INTAKE_MOTOR_CANID, MotorType.kBrushless);
   public DoubleSolenoid deployer = new DoubleSolenoid(RobotCANMap.INTAKE_EXTENDER_ID1, RobotCANMap.INTAKE_EXTENDER_ID2);
 
-  private double collectingSpeed = 1;
+  private double collectingSpeed = .75;
   private double repellingSpeed = -1;
 
   /**
@@ -47,12 +47,12 @@ public class Intake extends SubsystemBase {
 
   //Deploy intake.
   public void deploy(){
-    deployer.set(DoubleSolenoid.Value.kForward);
+    deployer.set(DoubleSolenoid.Value.kReverse);
   }
 
   //Retract intake.
   public void retract(){
-    deployer.set(DoubleSolenoid.Value.kReverse);
+    deployer.set(DoubleSolenoid.Value.kForward);
   }
 
 }
