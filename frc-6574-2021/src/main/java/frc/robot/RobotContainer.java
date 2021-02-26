@@ -45,7 +45,7 @@ public class RobotContainer {
   public static Joystick operator = new Joystick(1);
 
 
-  public final ArcadeDrive arcadeDrive = new ArcadeDrive(driveTrain);
+  public final ArcadeDrive arcadeDrive = new ArcadeDrive();
  
   // STILL NEED TO FIGURE OUT TRIGGERS
   // xBox Variables

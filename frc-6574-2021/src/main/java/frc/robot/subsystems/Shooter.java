@@ -60,7 +60,7 @@ public class Shooter extends SubsystemBase {
 
   public void lowerHoodForTrench(){
     hoodAngle.set(DoubleSolenoid.Value.kReverse);
-    Timer.delay(1);
+    Timer.delay(.5);
     hoodTrench.set(DoubleSolenoid.Value.kReverse);
   }
 

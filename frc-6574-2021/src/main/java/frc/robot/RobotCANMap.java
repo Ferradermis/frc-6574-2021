@@ -33,8 +33,8 @@ public class RobotCANMap {
     public static final int INTAKE_EXTENDER_ID1 = 4;
     public static final int INTAKE_EXTENDER_ID2 = 5;
 
-    public static final int HOOD_TRENCH_ID1 = 1;
+    public static final int HOOD_TRENCH_ID1 = 2;//1
     public static final int HOOD_TRENCH_ID2 = 3;
     public static final int HOOD_ANGLE_ID1 = 0;
-    public static final int HOOD_ANGLE_ID2 = 2;
+    public static final int HOOD_ANGLE_ID2 = 1;//2
 }

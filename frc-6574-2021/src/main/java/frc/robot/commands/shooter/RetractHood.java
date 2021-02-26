@@ -16,7 +16,7 @@ public class RetractHood extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.extendHoodForLongDistance();
+    RobotContainer.shooter.retractHoodForShortDistance();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

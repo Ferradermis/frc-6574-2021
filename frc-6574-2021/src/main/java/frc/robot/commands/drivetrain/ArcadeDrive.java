@@ -10,15 +10,18 @@ import frc.robot.subsystems.DriveTrain;
 
 public class ArcadeDrive extends CommandBase {
   /** Creates a new ArcadeDrive. */
-  private DriveTrain driveTrain;
+  //private DriveTrain driveTrain;
   private double THROTTLE = 1;
-  public ArcadeDrive(DriveTrain driveTrain) {
+  /*public ArcadeDrive(DriveTrain driveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.driveTrain = driveTrain;
     addRequirements(RobotContainer.driveTrain);
     
   }
-
+*/
+public ArcadeDrive(){
+  
+}
 // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
