@@ -21,6 +21,8 @@ public class DriveTrain extends SubsystemBase {
   private WPI_TalonFX backLeft = new WPI_TalonFX(RobotCANMap.BACK_LEFT_CANID);
   private WPI_TalonFX frontRight = new WPI_TalonFX(RobotCANMap.FRONT_RIGHT_CANID);
   private WPI_TalonFX backRight = new WPI_TalonFX(RobotCANMap.BACK_RIGHT_CANID);
+  private WPI_TalonFX threeLeft = new WPI_TalonFX(RobotCANMap.THREE_LEFT_CANID);
+  private WPI_TalonFX threeRight = new WPI_TalonFX(RobotCANMap.THREE_RIGHT_CANID);
   /**
    * Creates a new DriveTrain.
    */
@@ -29,9 +31,24 @@ public class DriveTrain extends SubsystemBase {
     backLeft.configFactoryDefault();
     frontRight.configFactoryDefault();
     backRight.configFactoryDefault();
+    threeRight.configFactoryDefault();
+    threeLeft.configFactoryDefault();
 
     backLeft.follow(frontLeft);
+    threeLeft.follow(frontLeft);
     backRight.follow(frontRight);
+    threeRight.follow(frontRight);
+    
+    frontRight.setInverted(true);
+    backRight.setInverted(true);
+    threeRight.setInverted(true);
+
+    frontRight.setNeutralMode(NeutralMode.Brake);
+    threeRight.setNeutralMode(NeutralMode.Brake);
+    backRight.setNeutralMode(NeutralMode.Brake);
+    frontLeft.setNeutralMode(NeutralMode.Brake);
+    threeLeft.setNeutralMode(NeutralMode.Brake);
+    backLeft.setNeutralMode(NeutralMode.Brake);
     //setDefaultCommand(new ArcadeDrive());
   }
 
@@ -56,7 +73,9 @@ public class DriveTrain extends SubsystemBase {
      else if (rightSpeed < -1) {rightSpeed = -1;}
    
      frontLeft.set(ControlMode.PercentOutput,-leftSpeed);
-     frontRight.set(ControlMode.PercentOutput,-rightSpeed);
+     frontRight.set(ControlMode.PercentOutput,rightSpeed);
+
+
   }
 
   public void turnToHeading(){
@@ -65,38 +84,5 @@ public class DriveTrain extends SubsystemBase {
   
   public void resetgyro(){
 
-  }
-  private void configureMotors() {
-
-    double rampRate = 0.35; //time in seconds to go from 0 to full throttle
-
-    backLeft.follow(frontLeft);
-    backRight.follow(frontRight);
-    //thirdRight.follow(frontRight);
-    //thirdLeft.follow(frontRight);
-
-    frontLeft.configFactoryDefault();
-    frontRight.configFactoryDefault();
-    backLeft.configFactoryDefault();
-    backRight.configFactoryDefault();
-    //thirdRight.configFactoryDefault();
-    //thirdLeft.configFactoryDefault();
-
-    frontLeft.configOpenloopRamp(rampRate);
-    backLeft.configOpenloopRamp(rampRate);
-    frontRight.configOpenloopRamp(rampRate);
-    backRight.configOpenloopRamp(rampRate);
-    //thirdLeft.configOpenloopRamp(rampRate);
-    //thirdRight.configOpenloopRamp(rampRate);
-
-    frontRight.setInverted(true);
-    backRight.setInverted(true);
-    //thirdRight.setInverted(true);
-
-
-    frontLeft.setNeutralMode(NeutralMode.Brake);
-    backLeft.setNeutralMode(NeutralMode.Brake);
-    frontRight.setNeutralMode(NeutralMode.Brake);
-    backRight.setNeutralMode(NeutralMode.Brake);
   }
 }

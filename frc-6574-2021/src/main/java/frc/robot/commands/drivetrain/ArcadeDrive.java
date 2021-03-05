@@ -12,6 +12,7 @@ public class ArcadeDrive extends CommandBase {
   /** Creates a new ArcadeDrive. */
   //private DriveTrain driveTrain;
   private double THROTTLE = 1;
+  private double DEADBAND = .02;
   /*public ArcadeDrive(DriveTrain driveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.driveTrain = driveTrain;
@@ -20,7 +21,7 @@ public class ArcadeDrive extends CommandBase {
   }
 */
 public ArcadeDrive(){
-  
+
 }
 // Called when the command is initially scheduled.
   @Override
@@ -35,7 +36,12 @@ public ArcadeDrive(){
     // Read data from joystick and drive per joystick positioning
     double x = RobotContainer.getDriverLeftY();
     double y = -RobotContainer.getDriverRightX(); 
-  
+    if (Math.abs(x) < DEADBAND){
+      x = 0;
+    }
+    if (Math.abs(y) < DEADBAND){
+      y = 0;
+    }
     drive_cmd = Math.pow(y, 1);       // cubing y makes it more "sensitive", maybe need to adjust deadbands
     steer_cmd = Math.pow(x, 1) / 2; // cubing x and /2 makes it more "sensitive", maybe need to adjust deadbands
   

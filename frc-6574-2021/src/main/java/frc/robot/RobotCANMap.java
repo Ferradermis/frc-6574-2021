@@ -15,13 +15,15 @@ public class RobotCANMap {
     public static final int BACK_LEFT_CANID = 2;
     public static final int FRONT_RIGHT_CANID = 3;
     public static final int BACK_RIGHT_CANID = 4;
+    public static final int THREE_LEFT_CANID = 14;
+    public static final int THREE_RIGHT_CANID = 13;
 
     public static final int SHOOTER_RED_CANID = 5;
     public static final int SHOOTER_BLACK_CANID = 6;
-
+/*
     public static final int ELEVATOR_CANID = 7;
     public static final int WINCH_CANID = 8;
-
+*/
     public static final int INTAKE_MOTOR_CANID = 9;
 
     public static final int SPINDEXER_CANID = 10;
