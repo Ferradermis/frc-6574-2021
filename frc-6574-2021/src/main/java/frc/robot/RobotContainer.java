@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -20,12 +21,16 @@ import frc.robot.commands.shooter.ExtendHood;
 import frc.robot.commands.shooter.LowerHood;
 import frc.robot.commands.shooter.RaiseHood;
 import frc.robot.commands.shooter.RetractHood;
+import frc.robot.commands.shooter.ShootRoutine;
 import frc.robot.commands.turretcommands.AimTurret;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Spindexer;
 import frc.robot.subsystems.Turret;
+
+import javax.security.sasl.RealmChoiceCallback;
+
 import edu.wpi.first.wpilibj.Compressor;
 
 
@@ -191,7 +196,7 @@ public class RobotContainer {
     operator_downDpad.whenPressed(new LowerHood());
     operator_rightDpad.whenPressed(new ExtendHood());
     operator_leftDpad.whenPressed(new RetractHood());
-    operator_rightTrigger.whenPressed(new AimTurret());
+    operator_rightTrigger.whenPressed(new SequentialCommandGroup(new AimTurret(), new RaiseHood()));
     //?????
     //driver_upDpad.whileHeld(new DriveClimberUp());
     //driver_downDpad.whileHeld(new DriveClimberDown());

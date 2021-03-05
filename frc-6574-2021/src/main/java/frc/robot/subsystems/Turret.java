@@ -68,7 +68,7 @@ public class Turret extends SubsystemBase {
   }
 
   public void turn(double speed){
-    turretRotator.set(ControlMode.PercentOutput, speed);
+    turretRotator.set(ControlMode.PercentOutput, -speed); //negated so turret turns towards limelight
   }
 
 /*  public int currentDirection() {
