@@ -20,10 +20,12 @@ import frc.robot.commands.shooter.ExtendHood;
 import frc.robot.commands.shooter.LowerHood;
 import frc.robot.commands.shooter.RaiseHood;
 import frc.robot.commands.shooter.RetractHood;
+import frc.robot.commands.turretcommands.AimTurret;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Spindexer;
+import frc.robot.subsystems.Turret;
 import edu.wpi.first.wpilibj.Compressor;
 
 
@@ -37,6 +39,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   
   public static DriveTrain driveTrain = new DriveTrain();
+  public static Turret turret = new Turret();
   public static Intake intake = new Intake();
   public static Shooter shooter = new Shooter();
   public static Spindexer spindexer = new Spindexer();
@@ -188,7 +191,8 @@ public class RobotContainer {
     operator_downDpad.whenPressed(new LowerHood());
     operator_rightDpad.whenPressed(new ExtendHood());
     operator_leftDpad.whenPressed(new RetractHood());
-
+    operator_rightTrigger.whenPressed(new AimTurret());
+    //?????
     //driver_upDpad.whileHeld(new DriveClimberUp());
     //driver_downDpad.whileHeld(new DriveClimberDown());
     driver_rightBumper.toggleWhenPressed(new CollectPowerCells());

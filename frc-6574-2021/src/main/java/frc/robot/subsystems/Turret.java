@@ -14,21 +14,34 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
-import frc.robot.RobotMap;
+import frc.robot.RobotCANMap;
 
 public class Turret extends SubsystemBase {
   /**
    * Creates a new Turret.
    */
   // rotator vexPro775
-  private TalonSRX turretRotator = new TalonSRX(RobotMap.TURRET_CAN_ID);
+  private TalonSRX turretRotator = new TalonSRX(RobotCANMap.TURRET_CAN_ID);
 
  // private final AS5600EncoderPwm encoder = new AS5600EncoderPwm(turretRotator.getSensorCollection());
 
   public Limelight limelight = new Limelight();
   
   public Turret() {
-    configureMotors();
+        // Set up motors
+    // don't need rampRate?
+    // should set currentLimit?
+
+    double rampRate = 0.2; 
+    int currentLimit = 10; 
+
+    turretRotator.configSelectedFeedbackSensor(FeedbackDevice.RemoteSensor0);
+    turretRotator.setInverted(true);
+
+    turretRotator.configOpenloopRamp(rampRate);
+    turretRotator.configContinuousCurrentLimit(currentLimit);
+    turretRotator.enableCurrentLimit(true);
+
     limelight.setTarget(0);
 //    turretRotator.setSelectedSensorPosition(0); // need to think of best way to do this
   }
@@ -66,13 +79,13 @@ public class Turret extends SubsystemBase {
 public void stopAiming()
 {
   stopTurning();
-  
+ /* 
   Command command = this.getCurrentCommand();
   if (command!=null) {
     if (command.getClass().equals(RobotContainer.aimTurret.getClass())) {
       command.cancel();
     }
-  }
+  }*/
 }
 
 public void setTarget(String targetName) {
@@ -84,22 +97,6 @@ public void setTarget(String targetName) {
   }
   limelight.setTarget(targetNumber);
 }
-
-  private void configureMotors(){
-    // Set up motors
-    // don't need rampRate?
-    // should set currentLimit?
-
-    double rampRate = 0.2; 
-    int currentLimit = 10; 
-
-    turretRotator.configSelectedFeedbackSensor(FeedbackDevice.RemoteSensor0);
-    turretRotator.setInverted(true);
-
-    turretRotator.configOpenloopRamp(rampRate);
-    turretRotator.configContinuousCurrentLimit(currentLimit);
-    turretRotator.enableCurrentLimit(true);
-  }
 
 
 /** * Reads PWM values from the AS5600. 

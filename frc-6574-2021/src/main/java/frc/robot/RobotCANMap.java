@@ -39,4 +39,6 @@ public class RobotCANMap {
     public static final int HOOD_TRENCH_ID2 = 3;
     public static final int HOOD_ANGLE_ID1 = 0;
     public static final int HOOD_ANGLE_ID2 = 1;//2
+
+    public static final int TURRET_CAN_ID = 11;
 }

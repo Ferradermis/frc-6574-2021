@@ -8,7 +8,7 @@
 package frc.robot.commands.turretcommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Turret;
+import frc.robot.RobotContainer;
 
 public class AimTurret extends CommandBase {
   /**
@@ -17,13 +17,11 @@ public class AimTurret extends CommandBase {
 
   private double turnKP = .06;
 //  private double MAXROTATION = 45;
+;
 
-  Turret turret;
-
-  public AimTurret(Turret turret) {
+  public AimTurret() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(turret);
-    this.turret = turret;
+
   }
   @Override
   public void initialize() {
@@ -31,10 +29,10 @@ public class AimTurret extends CommandBase {
 
   @Override
   public void execute() {
-    if (turret.limelight.hasTarget()) {
-      double angleX = turret.limelight.getAngleX();
+    if (RobotContainer.turret.limelight.hasTarget()) {
+      double angleX = RobotContainer.turret.limelight.getAngleX();
      // if (Math.abs(turret.currentDirection())<MAXROTATION) {
-        turret.turn(angleX*turnKP); // copysign Deleted
+      RobotContainer.turret.turn(angleX*turnKP); // copysign Deleted
     } else {
       this.cancel();
     }
@@ -43,7 +41,7 @@ public class AimTurret extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    turret.stopTurning();
+    RobotContainer.turret.stopTurning();
   }
 
   // Returns true when the command should end.
