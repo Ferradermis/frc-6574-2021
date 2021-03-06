@@ -37,6 +37,9 @@ public class Shooter extends SubsystemBase {
     shooterRed.setInverted(true);
     shooterRed.follow(shooterBlackMain);
 
+    shooterBlackMain.setNeutralMode(NeutralMode.Coast);
+    shooterRed.setNeutralMode(NeutralMode.Coast);
+
     lowerHoodForTrench();
     retractHoodForShortDistance();
   }
