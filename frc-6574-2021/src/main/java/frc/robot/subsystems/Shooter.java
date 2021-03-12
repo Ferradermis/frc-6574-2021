@@ -27,7 +27,7 @@ public class Shooter extends SubsystemBase {
 
   public TalonSRX turretRotator = new TalonSRX(RobotCANMap.TURRET_CANID);
 
-  private int shootVelocity = 1;
+  private double shootVelocity = 1;
 
   /**
    * Creates a new Shooter.

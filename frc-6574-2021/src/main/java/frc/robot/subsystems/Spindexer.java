@@ -55,7 +55,7 @@ public class Spindexer extends SubsystemBase {
     }
 
     public void stopFeeder(){
-      feeder.stopMotor();;
+      feeder.stopMotor();
     }
 
 

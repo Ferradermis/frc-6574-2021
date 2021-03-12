@@ -4,16 +4,13 @@
 
 package frc.robot.commands.shooter;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.turretcommands.AimTurret;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 
-public class ShootRoutine extends SequentialCommandGroup {
-  /** Creates a new ShootRoutine. */
-  public ShootRoutine() {
+public class FeedWhenAtSpeed extends CommandBase {
+  /** Creates a new FeedWhenAtSpeed. */
+  public FeedWhenAtSpeed() {
     // Use addRequirements() here to declare subsystem dependencies.
-  super(new RaiseHood(),
-  new AimTurret());
-  
   }
 
   // Called when the command is initially scheduled.
@@ -22,11 +19,18 @@ public class ShootRoutine extends SequentialCommandGroup {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    //Replace with shoot speed check.
+    if(false){
+      RobotContainer.spindexer.spinFeeder();
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    RobotContainer.spindexer.stopFeeder();
+  }
 
   // Returns true when the command should end.
   @Override
